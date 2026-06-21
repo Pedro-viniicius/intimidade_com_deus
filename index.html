@@ -1,0 +1,2006 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>30 Dias de Intimidade com Deus</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #F9FAFB;
+      --surface: #FFFFFF;
+      --surface-2: #F3F4F6;
+      --border: #E5E7EB;
+      --text: #1F2937;
+      --muted: #6B7280;
+      --disabled: #9CA3AF;
+      --primary: #2563EB;
+      --success: #16A34A;
+      --error: #DC2626;
+      --warning: #D97706;
+      --gold: #B7791F;
+      --stone: #D6D3D1;
+      --shadow: 0 18px 45px rgba(31, 41, 55, 0.10);
+      --shadow-soft: 0 8px 24px rgba(31, 41, 55, 0.08);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --max: 1180px;
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #121212;
+      --surface: #1E1E1E;
+      --surface-2: #2A2A2A;
+      --border: #374151;
+      --text: #F3F4F6;
+      --muted: #9CA3AF;
+      --disabled: #6B7280;
+      --primary: #60A5FA;
+      --success: #4ADE80;
+      --error: #F87171;
+      --warning: #FBBF24;
+      --gold: #FBBF24;
+      --stone: #4B5563;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+      --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    * {
+      overflow-wrap: anywhere;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), transparent 420px), var(--bg);
+      color: var(--text);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+      line-height: 1.55;
+      text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .app-shell {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(183, 121, 31, 0.95));
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 900;
+    }
+
+    .brand-title,
+    .brand-subtitle,
+    .eyebrow,
+    .btn,
+    .quick-nav,
+    .label,
+    label,
+    .small-title,
+    .tag,
+    .reference,
+    .meta-list,
+    .week-heading {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 0.98rem;
+      font-weight: 850;
+    }
+
+    .brand-subtitle {
+      margin: 1px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 10px 13px;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 760;
+      font-size: 0.88rem;
+      text-align: center;
+      touch-action: manipulation;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--primary);
+    }
+
+    .btn:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid rgba(37, 99, 235, 0.28);
+      outline-offset: 2px;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    [data-theme="dark"] .btn.primary { color: #0B1220; }
+
+    .btn.danger {
+      background: #FEF2F2;
+      border-color: #FECACA;
+      color: var(--error);
+    }
+
+    [data-theme="dark"] .btn.danger {
+      background: #2A1C1C;
+      border-color: #7F1D1D;
+    }
+
+    .quick-nav {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      margin-bottom: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 10px;
+    }
+
+    [data-theme="dark"] .quick-nav {
+      background: rgba(30, 30, 30, 0.94);
+      box-shadow: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 8px;
+      min-height: 44px;
+      padding: 10px 12px;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 850;
+      touch-action: manipulation;
+    }
+
+    .nav-toggle::after {
+      content: "+";
+      font-size: 1.15rem;
+      line-height: 1;
+      color: var(--primary);
+    }
+
+    .quick-nav.open .nav-toggle::after {
+      content: "-";
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding-bottom: 2px;
+    }
+
+    .nav-link {
+      flex: 0 0 auto;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      padding: 7px 11px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      border-color: var(--primary);
+      background: #EFF6FF;
+      color: var(--primary);
+      outline: none;
+    }
+
+    [data-theme="dark"] .nav-link:hover,
+    [data-theme="dark"] .nav-link:focus-visible {
+      background: #1E293B;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      scroll-margin-top: 90px;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34%),
+        linear-gradient(135deg, #EFF6FF, var(--surface));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 5vw, 56px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 26px;
+      bottom: 0;
+      width: 250px;
+      height: 100px;
+      border-top: 1px solid rgba(183, 121, 31, 0.34);
+      opacity: 0.55;
+      transform: skewX(-12deg);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 860px;
+      font-size: clamp(2.35rem, 7vw, 5rem);
+    }
+
+    h2 { font-size: clamp(1.55rem, 3vw, 2.25rem); }
+    h3 { font-size: 1.08rem; }
+
+    .hero-lead {
+      max-width: 860px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.24rem);
+    }
+
+    .identity {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .identity-card,
+    .panel,
+    .scripture-card,
+    .insight-card,
+    .study-card,
+    .avoid-card,
+    .declaration-card,
+    .history-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .identity-card {
+      background: #EFF6FF;
+    }
+
+    [data-theme="dark"] .hero {
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.14), transparent 34%),
+        linear-gradient(135deg, #1E293B, var(--surface));
+    }
+
+    [data-theme="dark"] .identity-card {
+      background: #202A3A;
+    }
+
+    .identity-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .identity-card p,
+    .panel p,
+    .scripture-card p,
+    .insight-card p,
+    .study-card p,
+    .avoid-card p,
+    .declaration-card p,
+    .history-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 22px;
+      scroll-margin-top: 90px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: clamp(18px, 3vw, 30px);
+    }
+
+    [data-theme="dark"] .section,
+    [data-theme="dark"] .hero { box-shadow: none; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .progress-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .day-number {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4.3rem);
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .progress-track {
+      height: 16px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin: 18px 0 10px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+      transition: width 300ms ease;
+    }
+
+    .meta-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    label,
+    .label {
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    input[type="date"],
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 11px 12px;
+      min-height: 44px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.45;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .wall {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(20px, 1fr));
+      gap: 8px;
+      padding: 16px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent),
+        repeating-linear-gradient(0deg, transparent 0 32px, rgba(31, 41, 55, 0.04) 32px 34px),
+        var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+    }
+
+    .wall .brick:nth-child(10n + 1),
+    .wall .brick:nth-child(10n + 3),
+    .wall .brick:nth-child(10n + 5),
+    .wall .brick:nth-child(10n + 7),
+    .wall .brick:nth-child(10n + 9) {
+      transform: translateY(2px);
+    }
+
+    [data-theme="dark"] .wall {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent),
+        repeating-linear-gradient(0deg, transparent 0 32px, rgba(255, 255, 255, 0.035) 32px 34px),
+        var(--surface-2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .brick {
+      aspect-ratio: 2 / 1;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #F3F4F6, #D6D3D1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 1px 2px rgba(31, 41, 55, 0.08);
+    }
+
+    .brick.completed {
+      background: linear-gradient(135deg, #2563EB, #B7791F);
+      border-color: #93C5FD;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    [data-theme="dark"] .brick {
+      background: #374151;
+      border-color: #4B5563;
+    }
+
+    [data-theme="dark"] .brick.completed {
+      background: linear-gradient(135deg, #60A5FA, #FBBF24);
+      border-color: #93C5FD;
+    }
+
+    .brick.completed::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+      opacity: 0.35;
+    }
+
+    .checklist,
+    .audit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .check-item,
+    .audit-question {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: background 160ms ease, border-color 160ms ease;
+    }
+
+    .check-item.checked,
+    .audit-question.checked {
+      background: #F0FDF4;
+      border-color: #86EFAC;
+    }
+
+    [data-theme="dark"] .check-item.checked,
+    [data-theme="dark"] .audit-question.checked {
+      background: #14251A;
+      border-color: #166534;
+    }
+
+    .check-item input,
+    .audit-question input {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--success);
+      flex: 0 0 auto;
+    }
+
+    .completion-note {
+      margin-top: 14px;
+      padding: 13px 14px;
+      border-radius: var(--radius);
+      background: #F0FDF4;
+      border: 1px solid #86EFAC;
+      color: var(--text);
+      display: none;
+    }
+
+    [data-theme="dark"] .completion-note {
+      background: #14251A;
+      border-color: #166534;
+    }
+
+    .completion-note.show { display: block; }
+
+    .state-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.84rem;
+      font-weight: 780;
+      min-height: 40px;
+      touch-action: manipulation;
+    }
+
+    .chip.active,
+    .declaration-card.pinned {
+      background: #EFF6FF;
+      border-color: #93C5FD;
+    }
+
+    [data-theme="dark"] .chip.active,
+    [data-theme="dark"] .declaration-card.pinned {
+      background: #1E293B;
+      border-color: #60A5FA;
+    }
+
+    .state-content,
+    .audit-fields,
+    .altar-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .truth-table {
+      display: grid;
+      gap: 10px;
+    }
+
+    .truth-row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .lie,
+    .truth { padding: 14px; }
+
+    .lie {
+      background: #FEF2F2;
+      border-right: 1px solid var(--border);
+    }
+
+    .truth { background: #F0FDF4; }
+
+    [data-theme="dark"] .lie { background: #2A1C1C; }
+    [data-theme="dark"] .truth { background: #14251A; }
+
+    .small-title {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .scripture-grid,
+    .insight-grid,
+    .study-grid,
+    .avoid-grid,
+    .declaration-grid,
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .reference,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      padding: 3px 9px;
+      background: #EFF6FF;
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    [data-theme="dark"] .reference,
+    [data-theme="dark"] .tag {
+      background: #1E293B;
+    }
+
+    .week-heading {
+      grid-column: 1 / -1;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 0.92rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 26px 0 0;
+      font-size: 0.93rem;
+    }
+
+    @media (max-width: 920px) {
+      .identity,
+      .progress-wrap,
+      .state-content,
+      .scripture-grid,
+      .insight-grid,
+      .study-grid,
+      .avoid-grid,
+      .declaration-grid,
+      .history-grid,
+      .audit-fields,
+      .altar-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .checklist,
+      .audit-grid { grid-template-columns: 1fr; }
+
+      .truth-row { grid-template-columns: 1fr; }
+
+      .lie {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app-shell {
+        width: min(100% - 22px, var(--max));
+        padding-top: 14px;
+      }
+
+      .topbar,
+      .section-header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .top-actions { justify-content: stretch; }
+      .top-actions .btn { flex: 1 1 auto; }
+      .quick-nav {
+        top: 6px;
+        padding: 8px;
+        margin-bottom: 12px;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        overflow: visible;
+        padding: 8px 0 0;
+      }
+
+      .quick-nav.open .nav-links {
+        display: grid;
+      }
+
+      .nav-link {
+        width: 100%;
+        min-height: 42px;
+        white-space: normal;
+        text-align: center;
+        border-radius: 8px;
+        padding: 8px 7px;
+      }
+
+      .wall { grid-template-columns: repeat(5, minmax(32px, 1fr)); }
+      .hero { padding: 22px; }
+    }
+
+    @media (max-width: 480px) {
+      .app-shell {
+        width: 100%;
+        padding: 10px 10px 42px;
+      }
+
+      .topbar {
+        margin-bottom: 10px;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        font-size: 0.92rem;
+      }
+
+      .brand-title {
+        font-size: 0.94rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.78rem;
+        line-height: 1.35;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 46px;
+        padding: 11px 12px;
+        font-size: 0.9rem;
+      }
+
+      .nav-links {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero,
+      .section {
+        border-radius: 10px;
+      }
+
+      .hero {
+        padding: 20px 16px;
+      }
+
+      .hero::after {
+        width: 150px;
+        right: 12px;
+        opacity: 0.32;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 12vw, 2.9rem);
+      }
+
+      h2 {
+        font-size: 1.45rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .hero-lead {
+        font-size: 1rem;
+      }
+
+      .identity {
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .section {
+        margin-top: 12px;
+        padding: 16px 12px;
+      }
+
+      .section-header {
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .section-header p,
+      .panel p,
+      .scripture-card p,
+      .insight-card p,
+      .study-card p,
+      .avoid-card p,
+      .declaration-card p,
+      .history-card p {
+        font-size: 0.95rem;
+      }
+
+      .day-number {
+        font-size: 2.55rem;
+      }
+
+      .toolbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .wall {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+        padding: 13px;
+        border-width: 1px;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.66), 0 8px 20px rgba(31, 41, 55, 0.08);
+      }
+
+      .brick {
+        min-height: 25px;
+        border-radius: 6px;
+      }
+
+      .check-item,
+      .audit-question {
+        padding: 12px 10px;
+      }
+
+      .check-item input,
+      .audit-question input {
+        width: 20px;
+        height: 20px;
+      }
+
+      .state-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .chip {
+        width: 100%;
+        min-height: 44px;
+        padding: 8px 7px;
+        white-space: normal;
+      }
+
+      .lie,
+      .truth {
+        padding: 12px;
+      }
+
+      .reference,
+      .tag {
+        max-width: 100%;
+        white-space: normal;
+        line-height: 1.25;
+        padding-block: 5px;
+      }
+
+      .scripture-card,
+      .insight-card,
+      .study-card,
+      .avoid-card,
+      .declaration-card,
+      .history-card,
+      .identity-card,
+      .panel {
+        padding: 13px;
+      }
+
+      textarea {
+        min-height: 118px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .app-shell {
+        padding-inline: 8px;
+      }
+
+      .state-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+      }
+
+      .section {
+        padding-inline: 10px;
+      }
+
+      .wall {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar" aria-label="Cabeçalho principal">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">30</div>
+        <div>
+          <p class="brand-title">30 Dias de Intimidade com Deus</p>
+          <p class="brand-subtitle">Altar diário de comunhão, Palavra e vigilância</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="themeToggle" type="button" aria-label="Alternar entre tema claro e tema escuro">Tema escuro</button>
+        <button class="btn danger" id="resetAll" type="button">Reiniciar jornada</button>
+      </div>
+    </header>
+
+    <nav class="quick-nav" id="quickNav" aria-label="Menu de navegação da jornada">
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">Menu da jornada</button>
+      <div class="nav-links" id="navLinks">
+        <a class="nav-link" href="#inicio">Início</a>
+        <a class="nav-link" href="#muro">Muro</a>
+        <a class="nav-link" href="#progresso">Jornada</a>
+        <a class="nav-link" href="#ritmo">Ritmo diário</a>
+        <a class="nav-link" href="#estados">Estados da alma</a>
+        <a class="nav-link" href="#mentiras">Mentiras e verdades</a>
+        <a class="nav-link" href="#biblia">Bíblia</a>
+        <a class="nav-link" href="#vozes">Vozes da fé</a>
+        <a class="nav-link" href="#estudos">Estudos</a>
+        <a class="nav-link" href="#esfriam">Vigilância</a>
+        <a class="nav-link" href="#auditoria">Auditoria</a>
+        <a class="nav-link" href="#declaracoes">Declarações</a>
+        <a class="nav-link" href="#altar">Altar</a>
+        <a class="nav-link" href="#historico">Histórico</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="heroTitle">
+        <p class="eyebrow">Jornada de 30 dias</p>
+        <h1 id="heroTitle">Voltar ao Senhor, um dia fiel de cada vez</h1>
+        <p class="hero-lead">Este painel não existe para medir performance espiritual. Ele existe como um altar de lembrança: um lugar simples para orar, meditar na Palavra, confessar fraquezas, vigiar a alma e buscar a Deus acima da própria dor.</p>
+        <div class="identity" aria-label="Declarações de propósito">
+          <article class="identity-card">
+            <strong>Missão</strong>
+            <p>Hoje eu não venho a Deus para provar força. Eu venho porque preciso dEle.</p>
+          </article>
+          <article class="identity-card">
+            <strong>Identidade</strong>
+            <p>Minha dor não será meu senhor. Meu coração será conduzido de volta ao Alto.</p>
+          </article>
+          <article class="identity-card">
+            <strong>Convite</strong>
+            <p>Se a alma está ferida, este dia ainda pode se tornar lugar de oração, entrega e comunhão.</p>
+          </article>
+        </div>
+        <p class="hero-lead">À luz de Colossenses 3:1-2, esta jornada chama o coração a buscar as coisas do alto. O alvo não é apenas sentir alívio; é conhecer mais o Senhor, permanecer em Cristo e lembrar que a vida está escondida nEle.</p>
+      </section>
+
+      <section class="section" id="muro" aria-labelledby="wallTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="wallTitle">Muro da Intimidade</h2>
+            <p>Cada tijolo representa um pequeno retorno ao Senhor: oração, Palavra, entrega e comunhão. Este muro não separa você de Deus; ele marca pedras de lembrança do que a graça está edificando.</p>
+          </div>
+          <span class="tag" id="brickCount">0 tijolos</span>
+        </div>
+        <div class="wall" id="intimacyWall" aria-label="Muro visual com trinta tijolos de memória espiritual"></div>
+      </section>
+
+      <section class="section" id="progresso" aria-labelledby="progressTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="progressTitle">Contador da Jornada</h2>
+            <p>Defina a data de início, acompanhe o dia atual e marque os dias concluídos como memoriais de retorno ao Senhor.</p>
+          </div>
+        </div>
+        <div class="progress-wrap">
+          <article class="panel">
+            <span class="small-title">Dia atual</span>
+            <div class="day-number" id="currentDay">Dia 0</div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="meta-list">
+              <span id="percentText">0% concluído</span>
+              <span id="remainingText">30 dias restantes</span>
+              <span id="completedText">0 dias marcados como concluídos</span>
+            </div>
+            <div class="toolbar">
+              <button class="btn primary" id="completeDay" type="button">Marcar dia como concluído</button>
+              <button class="btn" id="uncompleteDay" type="button">Remover marca do dia</button>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="form-row">
+              <label for="startDate">Data de início da jornada</label>
+              <input type="date" id="startDate">
+            </div>
+            <p>O cálculo automático considera a data escolhida como Dia 1. Antes da data de início, o painel permanece no Dia 0. Depois do trigésimo dia, ele continua mostrando a jornada completa.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="ritmo" aria-labelledby="missionTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="missionTitle">Ritmo Diário de Comunhão</h2>
+            <p>Práticas pequenas, sinceras e repetidas ajudam a alma a voltar para Deus sem transformar devoção em peso.</p>
+          </div>
+          <span class="tag" id="missionCount">0 de 14</span>
+        </div>
+        <div class="checklist" id="dailyChecklist"></div>
+        <div class="completion-note" id="missionCompleteNote">Ritmo de hoje concluído. Receba este registro com humildade: Deus não pede espetáculo, mas retorno fiel.</div>
+      </section>
+
+      <section class="section" id="estados" aria-labelledby="statesTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="statesTitle">Guia para Estados da Alma</h2>
+            <p>Escolha o estado que mais descreve este momento e receba uma direção curta, bíblica e praticável.</p>
+          </div>
+        </div>
+        <div class="state-tabs" id="stateTabs" role="tablist" aria-label="Estados emocionais e espirituais"></div>
+        <div class="state-content" id="stateContent"></div>
+      </section>
+
+      <section class="section" id="mentiras" aria-labelledby="truthTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="truthTitle">Mentiras que Enfraquecem a Alma e Verdades que Fortalecem o Espírito</h2>
+            <p>A fé aprende a responder à voz da dor com a verdade de Deus.</p>
+          </div>
+        </div>
+        <div class="truth-table" id="truthTable"></div>
+      </section>
+
+      <section class="section" id="biblia" aria-labelledby="scriptureTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="scriptureTitle">Fundamentos Bíblicos para Intimidade</h2>
+            <p>Passagens para sustentar oração, meditação, vigilância, perseverança e descanso na presença de Deus.</p>
+          </div>
+        </div>
+        <div class="scripture-grid" id="scriptureGrid"></div>
+      </section>
+
+      <section class="section" id="vozes" aria-labelledby="insightTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="insightTitle">Vozes da Fé para Esta Jornada</h2>
+            <p>Ênfases teológicas históricas e devocionais, apresentadas como sínteses em português, para conduzir o coração a Cristo.</p>
+          </div>
+        </div>
+        <div class="insight-grid" id="insightGrid"></div>
+      </section>
+
+      <section class="section" id="estudos" aria-labelledby="studyTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="studyTitle">Estudos Leves para 30 Dias</h2>
+            <p>Um caminho devocional curto para dias frágeis: uma passagem, uma reflexão, uma oração e um passo de obediência.</p>
+          </div>
+        </div>
+        <div class="study-grid" id="studyGrid"></div>
+      </section>
+
+      <section class="section" id="esfriam" aria-labelledby="avoidTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="avoidTitle">Coisas que Esfriam a Alma</h2>
+            <p>Pequenas concessões podem esfriar o coração. A vigilância não é medo; é amor que protege a comunhão.</p>
+          </div>
+        </div>
+        <div class="avoid-grid" id="avoidGrid"></div>
+      </section>
+
+      <section class="section" id="auditoria" aria-labelledby="auditTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="auditTitle">Auditoria Espiritual do Fim do Dia</h2>
+            <p>Examine a alma com sinceridade e esperança. Deus não está pedindo performance, mas retorno.</p>
+          </div>
+        </div>
+        <div class="audit-grid" id="auditChecks"></div>
+        <div class="audit-fields">
+          <div class="form-row">
+            <label for="lieToday">Qual mentira tentou enfraquecer minha fé hoje?</label>
+            <textarea id="lieToday"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="truthTodayText">Qual verdade bíblica preciso guardar no coração?</label>
+            <textarea id="truthTodayText"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="godReminder">O que Deus me lembrou hoje?</label>
+            <textarea id="godReminder"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="watchTomorrow">O que preciso vigiar amanhã?</label>
+            <textarea id="watchTomorrow"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="brickToday">Qual pequeno tijolo de intimidade foi colocado hoje?</label>
+            <textarea id="brickToday"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="auditReflection">Reflexão honesta do fim do dia</label>
+            <textarea id="auditReflection"></textarea>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="btn primary" id="saveAudit" type="button">Salvar auditoria de hoje</button>
+        </div>
+        <div class="completion-note show">Lembrete: pequenas concessões podem esfriar o coração. Intimidade é edificada por retornos repetidos ao Senhor, não por uma aparência impecável.</div>
+      </section>
+
+      <section class="section" id="declaracoes" aria-labelledby="declarationTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="declarationTitle">Declarações Diárias</h2>
+            <p>Escolha uma verdade para guardar como direção espiritual do dia.</p>
+          </div>
+          <span class="tag" id="pinnedDeclarationLabel">Nenhuma verdade fixada</span>
+        </div>
+        <div class="declaration-grid" id="declarationGrid"></div>
+      </section>
+
+      <section class="section" id="altar" aria-labelledby="altarTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="altarTitle">Altar de Memória</h2>
+            <p>Na Escritura, memoriais ajudavam o povo a não esquecer as obras do Senhor. Escrever a verdade impede que a emoção do momento governe a memória.</p>
+          </div>
+        </div>
+        <div class="altar-fields">
+          <div class="form-row">
+            <label for="altarShown">O que Deus tem me mostrado?</label>
+            <textarea id="altarShown"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="altarRemember">O que preciso lembrar quando a dor falar alto?</label>
+            <textarea id="altarRemember"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="altarVerse">Qual verdade bíblica marcou meu dia?</label>
+            <textarea id="altarVerse"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="altarPrayer">Que oração quero deixar registrada diante do Senhor?</label>
+            <textarea id="altarPrayer"></textarea>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="btn primary" id="saveAltar" type="button">Salvar memória</button>
+        </div>
+      </section>
+
+      <section class="section" id="historico" aria-labelledby="historyTitle">
+        <div class="section-header">
+          <div>
+            <h2 id="historyTitle">Linha do Tempo da Graça</h2>
+            <p>Veja continuidade, pequenos retornos, auditorias salvas, estados enfrentados, verdades do dia e crescimento do muro.</p>
+          </div>
+        </div>
+        <div class="history-grid" id="historyGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">Que este painel sirva como um lugar simples de retorno: Palavra, oração, arrependimento, esperança e comunhão com o Senhor.</footer>
+  </div>
+
+  <script>
+    const storageKey = "altarIntimidade30Dias";
+    const todayKey = new Date().toISOString().slice(0, 10);
+
+    const defaultState = {
+      theme: "light",
+      startDate: "",
+      completedDays: [],
+      checklistByDate: {},
+      selectedState: "dor emocional",
+      selectedStatesHistory: [],
+      pinnedDeclaration: "",
+      audits: {},
+      altar: {
+        altarShown: "",
+        altarRemember: "",
+        altarVerse: "",
+        altarPrayer: ""
+      }
+    };
+
+    const missions = [
+      "Orar com sinceridade por alguns minutos",
+      "Ler uma passagem bíblica curta",
+      "Meditar em um versículo",
+      "Escrever uma oração honesta",
+      "Agradecer por três coisas",
+      "Confessar uma ansiedade diante de Deus",
+      "Entregar uma dor específica ao Senhor",
+      "Praticar silêncio diante de Deus",
+      "Ouvir ou cantar um louvor",
+      "Memorizar uma verdade bíblica",
+      "Fazer um pequeno ato de obediência",
+      "Evitar alimentar pensamentos que afastam de Deus",
+      "Revisar o versículo do dia",
+      "Completar a auditoria espiritual noturna"
+    ];
+
+    const emotionalStates = [
+      {
+        key: "dor emocional",
+        title: "Dor emocional",
+        feeling: "Você pode sentir aperto, perda, saudade, lágrimas fáceis ou dificuldade de explicar o que está acontecendo por dentro.",
+        remember: "O Senhor está perto dos quebrantados e não despreza um coração contrito. Sua dor não é invisível diante dEle.",
+        avoid: "Não transforme a dor em senhor, identidade ou isolamento absoluto.",
+        plan: "Ore uma frase honesta, leia um salmo curto, respire devagar e entregue uma dor específica ao Senhor.",
+        refs: "Salmos 34:18; Mateus 11:28-30",
+        prayer: "Senhor, recebe minha dor como oração. Ensina meu coração a descansar em Ti sem fingir força."
+      },
+      {
+        key: "ansiedade",
+        title: "Ansiedade",
+        feeling: "A mente corre, o corpo pesa, o futuro parece ameaçador e a alma tenta controlar tudo.",
+        remember: "Deus governa o amanhã e convida você a lançar sobre Ele as preocupações de hoje.",
+        avoid: "Não alimente cenários sem fim como se a imaginação ansiosa fosse profecia.",
+        plan: "Nomeie a preocupação, apresente-a em oração e escolha uma verdade bíblica para repetir com calma.",
+        refs: "Filipenses 4:6-8; 1 Pedro 5:7",
+        prayer: "Pai, entrego esta ansiedade. Guarda minha mente em Cristo e conduz meus pensamentos para o que é verdadeiro."
+      },
+      {
+        key: "solidão",
+        title: "Solidão",
+        feeling: "Você pode se sentir esquecido, pouco procurado ou sem lugar seguro para abrir o coração.",
+        remember: "A presença de Deus não é cancelada pela ausência de pessoas. Cristo permanece com os Seus.",
+        avoid: "Não conclua que estar só significa estar abandonado por Deus.",
+        plan: "Faça uma oração em voz baixa, envie uma mensagem honesta a alguém maduro e leia uma promessa de presença.",
+        refs: "Salmos 139:1-10; Hebreus 13:5",
+        prayer: "Senhor, encontra-me neste quarto, nesta mesa, neste silêncio. Que Tua presença seja meu abrigo."
+      },
+      {
+        key: "cansaço espiritual",
+        title: "Cansaço espiritual",
+        feeling: "Orar parece difícil, a Bíblia parece distante e a alma sente pouco vigor.",
+        remember: "O descanso de Cristo é para cansados, não para pessoas que já chegaram fortes.",
+        avoid: "Não confunda cansaço com abandono definitivo da fé.",
+        plan: "Reduza o ritmo, mas não abandone o lugar secreto. Leia poucos versos com muita sinceridade.",
+        refs: "Isaías 40:29-31; Mateus 11:28",
+        prayer: "Cristo, eu venho cansado. Dá-me graça para permanecer contigo em passos pequenos."
+      },
+      {
+        key: "culpa",
+        title: "Culpa",
+        feeling: "A memória acusa, o arrependimento parece insuficiente e a alma teme se aproximar.",
+        remember: "Há graça no trono de Deus para quem se aproxima por Cristo com arrependimento sincero.",
+        avoid: "Não use a culpa como desculpa para fugir da única fonte de perdão.",
+        plan: "Confesse com clareza, receba a suficiência de Cristo e pratique uma obediência simples hoje.",
+        refs: "1 João 1:9; Hebreus 4:16",
+        prayer: "Senhor, confesso sem defesa. Lava-me em Cristo e guia meus passos em arrependimento real."
+      },
+      {
+        key: "vergonha",
+        title: "Vergonha",
+        feeling: "Você pode sentir vontade de se esconder, evitar oração e acreditar que sua fraqueza define você.",
+        remember: "Em Cristo, Deus chama pecadores ao arrependimento e filhos ao retorno.",
+        avoid: "Não aceite uma identidade construída pela queda quando Cristo oferece restauração.",
+        plan: "Diga a verdade diante de Deus, rejeite a autodefinição pela vergonha e leia Romanos 8 com calma.",
+        refs: "Romanos 8:1; Lucas 15:20",
+        prayer: "Pai, eu volto sem máscaras. Que a vergonha perca força diante da graça do Teu Filho."
+      },
+      {
+        key: "confusão",
+        title: "Confusão",
+        feeling: "Tudo parece misturado: decisões, emoções, fé, dúvidas e medo de escolher errado.",
+        remember: "Deus não é Deus de desordem. Ele guia pela Palavra, pela sabedoria e pela paz que guarda.",
+        avoid: "Não decida tudo no pico da emoção.",
+        plan: "Escreva a decisão, ore por sabedoria, espere se possível e busque conselho piedoso.",
+        refs: "Tiago 1:5; Salmos 119:105",
+        prayer: "Senhor, clareia meus passos. Não preciso ver todo o caminho, mas preciso permanecer contigo."
+      },
+      {
+        key: "vontade de desistir",
+        title: "Vontade de desistir",
+        feeling: "A alma pensa que continuar não vale a pena e que buscar a Deus não está mudando nada.",
+        remember: "Perseverança muitas vezes nasce antes de qualquer sensação de vitória.",
+        avoid: "Não transforme um dia pesado em sentença sobre toda a jornada.",
+        plan: "Faça apenas o próximo ato fiel: uma oração curta, um versículo, um pedido de ajuda.",
+        refs: "Gálatas 6:9; Hebreus 12:1-3",
+        prayer: "Jesus, segura meu coração no próximo passo. Que eu não abandone a fonte da vida."
+      },
+      {
+        key: "frieza espiritual",
+        title: "Frieza espiritual",
+        feeling: "Você percebe pouca afeição por Deus, pouca fome pela Palavra e certa indiferença interior.",
+        remember: "O Espírito pode reacender afetos santos por meio da Palavra, oração e arrependimento.",
+        avoid: "Não alimente a frieza com distrações contínuas e desobediências pequenas.",
+        plan: "Confesse a frieza, peça novo desejo por Deus e separe dez minutos sem telas.",
+        refs: "Apocalipse 2:4-5; Salmos 63:1",
+        prayer: "Espírito Santo, desperta meu coração. Ensina-me a desejar o Senhor novamente."
+      },
+      {
+        key: "distração",
+        title: "Distração",
+        feeling: "A mente foge para telas, tarefas, notificações e ruídos antes de permanecer com Deus.",
+        remember: "A atenção é uma forma de amor. O coração precisa ser conduzido, não apenas seguido.",
+        avoid: "Não entregue os primeiros pensamentos do dia ao barulho antes da oração.",
+        plan: "Silencie notificações, leia um salmo e faça uma oração sem pressa.",
+        refs: "Colossenses 3:1-2; Lucas 10:41-42",
+        prayer: "Senhor, recolhe minha atenção dispersa. Quero escolher a boa parte hoje."
+      },
+      {
+        key: "comparação",
+        title: "Comparação",
+        feeling: "Você mede sua vida pela aparência dos outros e sente atraso, inferioridade ou inveja.",
+        remember: "Deus conduz filhos reais por caminhos reais. Sua comunhão com Ele não precisa imitar a história de outra pessoa.",
+        avoid: "Não alimente comparação como se fosse discernimento espiritual.",
+        plan: "Agradeça por três evidências de graça e ore abençoando a pessoa com quem se comparou.",
+        refs: "João 21:22; Gálatas 6:4",
+        prayer: "Pai, livra-me da comparação. Ensina-me a seguir Cristo no caminho que me deste."
+      },
+      {
+        key: "medo do futuro",
+        title: "Medo do futuro",
+        feeling: "O amanhã parece grande demais e a alma tenta prever perdas antes de viver a graça do dia.",
+        remember: "O Deus soberano do futuro também é o Pastor do presente.",
+        avoid: "Não viva antecipadamente dores que Deus ainda não colocou diante de você.",
+        plan: "Ore pelo amanhã, obedeça no hoje e repita uma verdade sobre a fidelidade de Deus.",
+        refs: "Mateus 6:34; Salmos 23:1-4",
+        prayer: "Pastor fiel, eu não governo o futuro. Guia-me hoje e sustenta-me amanhã."
+      },
+      {
+        key: "saudade",
+        title: "Saudade",
+        feeling: "Uma ausência pesa, uma memória volta e o coração sente falta do que não pode segurar.",
+        remember: "Deus acolhe lágrimas e também aponta o coração para a esperança eterna.",
+        avoid: "Não faça da saudade um altar maior que o Senhor.",
+        plan: "Nomeie a saudade diante de Deus, agradeça pelo que foi bom e entregue a falta ao cuidado dEle.",
+        refs: "Salmos 56:8; Apocalipse 21:4",
+        prayer: "Senhor, recebe minha saudade. Que ela não me afaste de Ti, mas me lembre da esperança eterna."
+      },
+      {
+        key: "impaciência",
+        title: "Impaciência",
+        feeling: "Você quer respostas rápidas, mudança imediata e sinais claros antes de confiar.",
+        remember: "Deus forma raízes profundas em processos que nem sempre parecem visíveis.",
+        avoid: "Não confunda demora com descuido divino.",
+        plan: "Ore por perseverança, faça o bem possível hoje e entregue o cronograma ao Senhor.",
+        refs: "Salmos 27:14; Romanos 5:3-5",
+        prayer: "Senhor, ensina-me a esperar sem endurecer. Forma em mim uma esperança paciente."
+      },
+      {
+        key: "sensação de abandono",
+        title: "Sensação de abandono",
+        feeling: "A alma pergunta onde Deus está e interpreta o silêncio como ausência.",
+        remember: "A presença de Deus é mais firme que a percepção do momento. Cristo conhece o clamor do aflito.",
+        avoid: "Não transforme silêncio em veredito contra o caráter de Deus.",
+        plan: "Ore um salmo de lamento, relembre uma fidelidade passada e permaneça diante de Deus sem fingimento.",
+        refs: "Salmos 13; Romanos 8:38-39",
+        prayer: "Deus fiel, quando eu não Te percebo, guarda-me pela verdade. Não deixes meu coração fugir de Ti."
+      }
+    ];
+
+    const liesTruths = [
+      ["Deus está distante de mim", "Em Cristo, Deus chama os cansados a se aproximarem. A sensação de distância não anula a promessa da presença."],
+      ["Eu só posso orar quando estiver forte", "A oração é justamente o caminho dos fracos para o Pai. Dependência é lugar de graça, não de vergonha."],
+      ["Minha dor prova que Deus me abandonou", "A dor prova que este mundo geme, mas não prova abandono. Deus se aproxima dos quebrantados."],
+      ["Eu preciso sentir algo para saber que Deus está comigo", "A fidelidade de Deus é mais firme que a variação das emoções. A fé descansa no caráter do Senhor."],
+      ["Eu falhei demais para voltar", "O arrependimento sincero encontra misericórdia em Cristo. Voltar hoje é obediência, não presunção."],
+      ["Ler a Bíblia agora não vai mudar nada", "A Palavra pode trabalhar em silêncio, renovando a mente e sustentando a alma passo a passo."],
+      ["A oração não está funcionando", "Oração não é controle de resultados; é comunhão com o Pai, entrega e alinhamento do coração."],
+      ["Eu estou sozinho", "Mesmo quando pessoas falham ou se afastam, o Senhor permanece presente e chama Seu povo à comunhão."],
+      ["Minha identidade está definida pela minha dor", "Em Cristo, sua vida está escondida em Deus. A dor é real, mas não é seu nome final."],
+      ["Não vale a pena continuar buscando", "Buscar o Senhor nunca é vazio. Pequenos retornos constroem raízes que a crise não vê de imediato."],
+      ["Deus só se agrada de mim quando estou bem", "Deus recebe filhos quebrantados que vêm por Cristo. Ele não exige aparência de estabilidade para conceder graça."],
+      ["Eu não consigo ter intimidade com Deus", "Intimidade é cultivada por graça, Palavra, oração e retornos diários. O Espírito ajuda a alma fraca."]
+    ];
+
+    const scriptures = [
+      ["Colossenses 3:1-2", "Buscar as coisas do alto e orientar os pensamentos para a realidade de Cristo.", "A jornada começa quando a mente ferida é reconduzida ao Senhor acima das pressões do dia."],
+      ["Salmos 27:4", "O salmista deseja habitar na presença do Senhor e contemplar Sua beleza.", "Intimidade não é apenas pedir socorro; é desejar o próprio Deus."],
+      ["Salmos 42:1-2", "A alma sedenta anseia por Deus como fonte viva.", "A dor pode revelar uma sede mais profunda que nenhum consolo criado consegue saciar."],
+      ["Salmos 46:10", "Deus chama o coração a aquietar-se e reconhecer Seu senhorio.", "Silêncio diante do Senhor combate a ilusão de que tudo depende do nosso controle."],
+      ["Salmos 63:1", "A alma busca Deus em terra seca, com sede e desejo.", "Mesmo no deserto emocional, o coração pode procurar Deus com honestidade."],
+      ["Salmos 119:11", "Guardar a Palavra no coração protege a vida diante de Deus.", "Memorizar verdades bíblicas fortalece a alma contra mentiras recorrentes."],
+      ["Salmos 119:105", "A Palavra ilumina os passos e o caminho.", "Você talvez não veja tudo, mas pode receber luz suficiente para obedecer hoje."],
+      ["Mateus 6:6", "Jesus ensina a oração no secreto diante do Pai.", "O lugar secreto forma comunhão real sem depender de aparência pública."],
+      ["Mateus 11:28-30", "Cristo convida cansados e sobrecarregados a encontrarem descanso nEle.", "A jornada não começa na força humana, mas no descanso oferecido por Jesus."],
+      ["João 15:4-5", "Permanecer em Cristo é condição para fruto verdadeiro.", "Intimidade é permanência, não impulso emocional isolado."],
+      ["Romanos 8:26", "O Espírito ajuda nossa fraqueza quando nem sabemos orar como convém.", "Quando faltam palavras, Deus não fica sem socorro para Seus filhos."],
+      ["Romanos 12:2", "A mente é renovada para discernir a vontade de Deus.", "Pensar nas coisas do alto exige substituição de padrões, não apenas esforço momentâneo."],
+      ["Filipenses 4:6-8", "Ansiedade é levada a Deus em oração, e a mente é chamada ao que é verdadeiro e digno.", "A vigilância espiritual envolve tanto entrega quanto direção dos pensamentos."],
+      ["Hebreus 4:16", "Podemos nos aproximar do trono da graça com confiança por causa de Cristo.", "Fraqueza não impede aproximação; em Cristo, ela encontra misericórdia e socorro."],
+      ["Tiago 4:8", "Aproximar-se de Deus vem acompanhado da promessa de Sua aproximação.", "Cada retorno diário é uma resposta humilde a essa promessa."],
+      ["1 Pedro 5:7-8", "Lançar ansiedades sobre Deus e permanecer vigilante.", "Comunhão e vigilância caminham juntas: descanso no cuidado de Deus e atenção ao coração."]
+    ];
+
+    const insights = [
+      ["João Calvino", "Ênfase inspirada em Calvino: conhecer Deus e conhecer a si mesmo caminham juntos.", "Na dor, você aprende sua dependência e contempla a suficiência, soberania e graça do Senhor."],
+      ["Martinho Lutero", "Ênfase inspirada em Lutero: oração nasce da dependência, não da performance religiosa.", "Quando a alma está fraca, a oração simples continua sendo um retorno real ao Pai."],
+      ["Charles Spurgeon", "Ênfase inspirada em Spurgeon: Cristo é suficiente para consolar e sustentar a alma aflita.", "A dor não precisa vencer quando o coração é conduzido ao Salvador compassivo."],
+      ["C. S. Lewis", "Ênfase inspirada em C. S. Lewis: nossos desejos apontam para uma alegria maior que este mundo.", "A saudade e o anseio podem se tornar placas apontando para Deus e para a esperança eterna."],
+      ["Billy Graham", "Ênfase inspirada em Billy Graham: caminhar com Cristo é entrega diária, simples e verdadeira.", "A fidelidade de hoje não precisa ser grandiosa; precisa ser real diante de Jesus."],
+      ["Sam Storms", "Ênfase inspirada em Sam Storms: Deus deve ser buscado como verdade e como deleite.", "A intimidade amadurece quando o coração pede não apenas respostas, mas prazer santo no próprio Deus."]
+    ];
+
+    const studies = [
+      ["Semana 1: Voltar ao Lugar Secreto", 1, "Mateus 6:6", "O Pai vê no secreto", "Onde tenho buscado ser visto mais do que ser encontrado por Deus?", "Voltar ao quarto interior com sinceridade.", "Separar cinco minutos sem celular para orar."],
+      ["Semana 1: Voltar ao Lugar Secreto", 2, "Salmos 27:4", "Desejar o próprio Deus", "O que meu coração tem desejado acima do Senhor?", "Pedir um desejo renovado pela presença de Deus.", "Escrever uma frase de adoração."],
+      ["Semana 1: Voltar ao Lugar Secreto", 3, "Hebreus 4:16", "Aproximar-se do trono da graça", "Que fraqueza tenho escondido em vez de levar a Cristo?", "Receber misericórdia e socorro em Cristo.", "Confessar uma área sem se justificar."],
+      ["Semana 1: Voltar ao Lugar Secreto", 4, "Salmos 46:10", "Aquietar o coração", "O que estou tentando controlar sem entregar ao Senhor?", "Reconhecer o senhorio de Deus.", "Praticar três minutos de silêncio diante de Deus."],
+      ["Semana 1: Voltar ao Lugar Secreto", 5, "Romanos 8:26", "O Espírito ajuda a fraqueza", "Como posso orar quando faltam palavras?", "Confiar na ajuda do Espírito Santo.", "Orar com frases curtas e honestas."],
+      ["Semana 1: Voltar ao Lugar Secreto", 6, "Salmos 63:1", "Buscar Deus na terra seca", "Que sede minha dor está revelando?", "Pedir sede santa pelo Deus vivo.", "Beber água devagar e transformar o gesto em oração."],
+      ["Semana 1: Voltar ao Lugar Secreto", 7, "Tiago 4:8", "Aproximar-se de Deus", "Qual pequeno retorno posso fazer hoje?", "Crer na promessa da aproximação de Deus.", "Revisar a semana e agradecer por um sinal de graça."],
+      ["Semana 2: Renovar a Mente nas Coisas do Alto", 8, "Colossenses 3:1-2", "Pensar nas coisas do alto", "Que pensamento tem puxado minha alma para baixo?", "Pedir mente firmada em Cristo.", "Substituir uma mentira por uma verdade bíblica."],
+      ["Semana 2: Renovar a Mente nas Coisas do Alto", 9, "Romanos 12:2", "Renovação da mente", "Qual padrão antigo precisa ser confrontado pela Palavra?", "Pedir transformação interior.", "Escrever um pensamento que precisa ser renovado."],
+      ["Semana 2: Renovar a Mente nas Coisas do Alto", 10, "Filipenses 4:6-8", "Ansiedade entregue em oração", "Qual preocupação precisa ser apresentada a Deus?", "Receber a paz que guarda em Cristo.", "Listar uma preocupação e três motivos de gratidão."],
+      ["Semana 2: Renovar a Mente nas Coisas do Alto", 11, "Salmos 119:11", "Guardar a Palavra", "Que verdade preciso guardar antes de dormir?", "Pedir memória espiritual viva.", "Memorizar uma frase bíblica curta."],
+      ["Semana 2: Renovar a Mente nas Coisas do Alto", 12, "Salmos 119:105", "Luz para o próximo passo", "Qual é o próximo passo fiel, mesmo pequeno?", "Pedir direção para obedecer hoje.", "Dar um passo prático de obediência."],
+      ["Semana 2: Renovar a Mente nas Coisas do Alto", 13, "2 Coríntios 10:5", "Levar pensamentos cativos", "Que pensamento precisa se render a Cristo?", "Pedir discernimento contra mentiras.", "Interromper uma ruminação e orar."],
+      ["Semana 2: Renovar a Mente nas Coisas do Alto", 14, "Isaías 26:3", "Mente firme no Senhor", "O que significa confiar hoje com a mente cansada?", "Pedir firmeza e paz.", "Revisar a verdade do dia antes de dormir."],
+      ["Semana 3: Permanecer em Cristo na Dor", 15, "João 15:4-5", "Permanecer em Cristo", "Onde tenho tentado frutificar longe da videira?", "Pedir vida que vem de Cristo.", "Fazer uma oração de permanência."],
+      ["Semana 3: Permanecer em Cristo na Dor", 16, "Salmos 34:18", "Deus perto dos quebrantados", "Como a proximidade de Deus confronta minha sensação de abandono?", "Entregar o coração quebrado ao Senhor.", "Nomear uma dor diante de Deus."],
+      ["Semana 3: Permanecer em Cristo na Dor", 17, "Mateus 11:28-30", "Descanso para cansados", "Que peso tenho carregado sem Cristo?", "Receber o jugo manso de Jesus.", "Diminuir uma cobrança desnecessária hoje."],
+      ["Semana 3: Permanecer em Cristo na Dor", 18, "Salmos 42:1-2", "Sede do Deus vivo", "Minha tristeza está me levando para onde?", "Pedir sede que não fuja de Deus.", "Ler um salmo em voz baixa."],
+      ["Semana 3: Permanecer em Cristo na Dor", 19, "1 Pedro 5:7-8", "Entrega e vigilância", "Que ansiedade preciso lançar sobre Deus sem perder a vigilância?", "Descansar no cuidado do Pai.", "Identificar uma distração que enfraquece a alma."],
+      ["Semana 3: Permanecer em Cristo na Dor", 20, "Romanos 8:38-39", "Nada separa do amor de Deus", "Que medo tenta dizer que fui separado do amor do Senhor?", "Descansar no amor firme de Deus em Cristo.", "Repetir essa verdade durante o dia."],
+      ["Semana 3: Permanecer em Cristo na Dor", 21, "Lamentações 3:22-24", "Misericórdias renovadas", "Onde preciso receber a misericórdia deste dia?", "Pedir esperança na fidelidade de Deus.", "Registrar uma misericórdia de hoje."],
+      ["Semana 4: Alegria, Perseverança e Intimidade", 22, "Salmos 16:11", "Alegria na presença de Deus", "Que alegria tenho buscado longe da presença do Senhor?", "Pedir deleite santo em Deus.", "Ouvir ou cantar um louvor com atenção."],
+      ["Semana 4: Alegria, Perseverança e Intimidade", 23, "Gálatas 6:9", "Não cansar de fazer o bem", "Qual bem pequeno devo continuar fazendo?", "Pedir perseverança sem orgulho.", "Fazer um ato discreto de obediência."],
+      ["Semana 4: Alegria, Perseverança e Intimidade", 24, "Hebreus 12:1-3", "Olhar para Jesus", "O que tem desviado meu olhar de Cristo?", "Fixar os olhos no Salvador perseverante.", "Remover uma distração por uma hora."],
+      ["Semana 4: Alegria, Perseverança e Intimidade", 25, "Salmos 37:4", "Deleitar-se no Senhor", "Como posso buscar Deus como deleite, não apenas solução?", "Pedir alegria no próprio Senhor.", "Escrever três atributos de Deus."],
+      ["Semana 4: Alegria, Perseverança e Intimidade", 26, "João 14:27", "Paz de Cristo", "Que paz falsa tenho procurado em distrações?", "Receber a paz que Cristo dá.", "Trocar dez minutos de distração por oração."],
+      ["Semana 4: Alegria, Perseverança e Intimidade", 27, "Judas 20-21", "Conservar-se no amor de Deus", "Que hábito ajuda meu coração a permanecer no amor do Senhor?", "Pedir edificação na fé.", "Revisar o muro da intimidade e agradecer."],
+      ["Semana 4: Alegria, Perseverança e Intimidade", 28, "2 Pedro 3:18", "Crescer na graça", "Onde percebo crescimento pequeno, mas real?", "Agradecer pela graça que amadurece.", "Registrar uma mudança interior observada."],
+      ["Dias Finais: Consagração e Memorial", 29, "Josué 4:6-7", "Pedras de lembrança", "O que não posso esquecer depois desta jornada?", "Consagrar a memória ao Senhor.", "Escrever um memorial de gratidão."],
+      ["Dias Finais: Consagração e Memorial", 30, "Romanos 11:36", "Tudo é dEle, por Ele e para Ele", "Como quero continuar buscando Deus depois dos 30 dias?", "Entregar a jornada e o futuro ao Senhor.", "Orar uma consagração final e planejar o próximo ritmo."]
+    ];
+
+    const avoidItems = [
+      ["Começar o dia no celular antes de orar", "Entrega a atenção ao ruído antes de apresentá-la a Deus.", "Dispersão, ansiedade e fome por novidade.", "Abra a manhã com uma oração curta e um versículo."],
+      ["Alimentar comparação", "Move o coração da gratidão para a rivalidade.", "Inveja, ingratidão e desânimo.", "Ore abençoando a pessoa e agradeça por evidências de graça."],
+      ["Transformar dor em isolamento absoluto", "A dor sem comunhão pode endurecer a alma.", "Silêncio pesado, ruminação e perda de perspectiva.", "Procure Deus e uma pessoa madura com honestidade."],
+      ["Consumir conteúdo que aumenta ansiedade", "A mente fica treinada para ameaça contínua.", "Vigilância carnal, medo e inquietação.", "Escolha conteúdo que favoreça verdade, paz e sobriedade."],
+      ["Fugir de Deus por vergonha", "Afasta a alma da fonte de perdão e restauração.", "Culpa acumulada e oração evitada.", "Confesse rapidamente e volte ao trono da graça."],
+      ["Orar apenas de forma mecânica", "Mantém palavras religiosas sem presença do coração.", "Frieza e sensação de distância.", "Ore menos palavras, mas com verdade."],
+      ["Ler a Bíblia apenas como obrigação", "Transforma alimento em tarefa sem meditação.", "Cansaço e resistência interior.", "Leia pouco, ore o texto e responda a Deus."],
+      ["Negociar hábitos que afastam da presença de Deus", "Pequenas concessões educam o coração para a distância.", "Insensibilidade e perda de fome espiritual.", "Corte um hábito específico e substitua por um retorno simples."],
+      ["Confundir silêncio de Deus com abandono", "Julga o caráter de Deus pela percepção do momento.", "Desespero e acusações interiores.", "Ore um salmo de lamento e relembre fidelidades passadas."],
+      ["Desistir da busca por não sentir emoção imediata", "Reduz comunhão a sensação instantânea.", "Inconstância e frustração.", "Permaneça pela fé, mesmo com pouco sentimento."]
+    ];
+
+    const auditQuestions = [
+      "Hoje eu busquei a Deus com sinceridade?",
+      "Hoje orei, mesmo que por pouco tempo?",
+      "Hoje meditei em alguma verdade bíblica?",
+      "Hoje entreguei minha ansiedade ao Senhor?",
+      "Hoje alimentei pensamentos das coisas do alto?",
+      "Hoje deixei a dor me afastar ou me aproximar de Deus?",
+      "Hoje pratiquei silêncio, gratidão ou confissão?",
+      "Hoje procurei conforto em Deus ou apenas em distrações?"
+    ];
+
+    const declarations = [
+      "Eu não busco Deus para provar força; eu O busco porque preciso dEle.",
+      "Minha dor não será maior que a presença do Senhor.",
+      "Hoje eu escolho pensar nas coisas do alto.",
+      "A oração é meu retorno ao Pai, não uma performance.",
+      "Mesmo fraco, eu posso me aproximar do trono da graça.",
+      "A Palavra de Deus será lâmpada para os meus pés.",
+      "A intimidade é construída em pequenos retornos diários.",
+      "Eu não preciso sentir tudo para obedecer hoje.",
+      "Deus não está distante da alma quebrantada.",
+      "Cada dia com Deus é um tijolo no meu muro de intimidade."
+    ];
+
+    let app = loadState();
+
+    function safeGetStorage(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function safeSetStorage(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (error) {
+        return false;
+      }
+      return true;
+    }
+
+    function mergeState(saved) {
+      const merged = Object.assign({}, defaultState, saved || {});
+      merged.altar = Object.assign({}, defaultState.altar, saved && saved.altar ? saved.altar : {});
+      if (!Array.isArray(merged.completedDays)) merged.completedDays = [];
+      if (!merged.checklistByDate) merged.checklistByDate = {};
+      if (!Array.isArray(merged.selectedStatesHistory)) merged.selectedStatesHistory = [];
+      if (!merged.audits) merged.audits = {};
+      return merged;
+    }
+
+    function loadState() {
+      try {
+        const raw = safeGetStorage(storageKey);
+        const saved = raw ? JSON.parse(raw) : null;
+        return mergeState(saved);
+      } catch {
+        return mergeState(null);
+      }
+    }
+
+    function saveState() {
+      safeSetStorage(storageKey, JSON.stringify(app));
+    }
+
+    function getCurrentDay() {
+      if (!app.startDate) return 0;
+      const start = new Date(app.startDate + "T00:00:00");
+      const today = new Date();
+      const localToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const diff = Math.floor((localToday - start) / 86400000) + 1;
+      return Math.max(0, Math.min(30, diff));
+    }
+
+    function currentChecklist() {
+      if (!app.checklistByDate[todayKey]) app.checklistByDate[todayKey] = [];
+      return app.checklistByDate[todayKey];
+    }
+
+    function renderTheme() {
+      document.documentElement.dataset.theme = app.theme;
+      document.getElementById("themeToggle").textContent = app.theme === "dark" ? "Tema claro" : "Tema escuro";
+    }
+
+    function renderWall() {
+      const wall = document.getElementById("intimacyWall");
+      wall.innerHTML = "";
+      const completed = app.completedDays.length;
+      for (let i = 1; i <= 30; i++) {
+        const brick = document.createElement("div");
+        brick.className = "brick" + (i <= completed ? " completed" : "");
+        brick.setAttribute("role", "img");
+        brick.setAttribute("aria-label", i <= completed ? `Tijolo ${i} colocado` : `Tijolo ${i} ainda não colocado`);
+        wall.appendChild(brick);
+      }
+      document.getElementById("brickCount").textContent = `${completed} ${completed === 1 ? "tijolo" : "tijolos"}`;
+    }
+
+    function renderProgress() {
+      const day = getCurrentDay();
+      const completed = app.completedDays.length;
+      const percent = Math.round((completed / 30) * 100);
+      document.getElementById("currentDay").textContent = `Dia ${day}`;
+      document.getElementById("progressBar").style.width = `${percent}%`;
+      document.getElementById("percentText").textContent = `${percent}% concluído`;
+      document.getElementById("remainingText").textContent = `${Math.max(0, 30 - completed)} dias restantes`;
+      document.getElementById("completedText").textContent = `${completed} ${completed === 1 ? "dia marcado" : "dias marcados"} como concluído`;
+      document.getElementById("startDate").value = app.startDate;
+      document.getElementById("completeDay").disabled = day === 0 || app.completedDays.indexOf(day) !== -1;
+      document.getElementById("uncompleteDay").disabled = day === 0 || app.completedDays.indexOf(day) === -1;
+    }
+
+    function renderChecklist() {
+      const list = document.getElementById("dailyChecklist");
+      const checked = currentChecklist();
+      list.innerHTML = "";
+      missions.forEach((mission, index) => {
+        const label = document.createElement("label");
+        label.className = "check-item";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = checked.indexOf(index) !== -1;
+        if (input.checked) label.className += " checked";
+        input.addEventListener("change", () => {
+          const current = currentChecklist();
+          if (input.checked && current.indexOf(index) === -1) current.push(index);
+          if (!input.checked) app.checklistByDate[todayKey] = current.filter(item => item !== index);
+          saveState();
+          renderChecklist();
+        });
+        const span = document.createElement("span");
+        span.textContent = mission;
+        label.appendChild(input);
+        label.appendChild(span);
+        list.appendChild(label);
+      });
+      const count = currentChecklist().length;
+      document.getElementById("missionCount").textContent = `${count} de ${missions.length}`;
+      document.getElementById("missionCompleteNote").classList.toggle("show", count === missions.length);
+    }
+
+    function renderStates() {
+      const tabs = document.getElementById("stateTabs");
+      tabs.innerHTML = "";
+      emotionalStates.forEach(state => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "chip" + (state.key === app.selectedState ? " active" : "");
+        button.textContent = state.title;
+        button.setAttribute("role", "tab");
+        button.setAttribute("aria-selected", String(state.key === app.selectedState));
+        button.addEventListener("click", () => {
+          app.selectedState = state.key;
+          app.selectedStatesHistory.unshift({ date: todayKey, state: state.title });
+          app.selectedStatesHistory = app.selectedStatesHistory.slice(0, 30);
+          saveState();
+          renderStates();
+          renderHistory();
+        });
+        tabs.appendChild(button);
+      });
+
+      const selected = emotionalStates.find(item => item.key === app.selectedState) || emotionalStates[0];
+      const content = document.getElementById("stateContent");
+      content.innerHTML = "";
+      [
+        ["O que você talvez esteja sentindo", selected.feeling],
+        ["O que lembrar sobre Deus", selected.remember],
+        ["O que não fazer", selected.avoid],
+        ["Plano de aterramento espiritual", selected.plan],
+        ["Referências bíblicas", selected.refs],
+        ["Oração ou declaração", selected.prayer]
+      ].forEach(([title, text]) => {
+        const card = document.createElement("article");
+        card.className = "panel";
+        card.innerHTML = `<span class="small-title">${title}</span><p>${text}</p>`;
+        content.appendChild(card);
+      });
+    }
+
+    function renderTruths() {
+      const table = document.getElementById("truthTable");
+      table.innerHTML = "";
+      liesTruths.forEach(([lie, truth]) => {
+        const row = document.createElement("article");
+        row.className = "truth-row";
+        row.innerHTML = `<div class="lie"><span class="small-title">Mentira</span>${lie}</div><div class="truth"><span class="small-title">Verdade</span>${truth}</div>`;
+        table.appendChild(row);
+      });
+    }
+
+    function renderCards() {
+      const scriptureGrid = document.getElementById("scriptureGrid");
+      scriptureGrid.innerHTML = "";
+      scriptures.forEach(([ref, summary, apply]) => {
+        const card = document.createElement("article");
+        card.className = "scripture-card";
+        card.innerHTML = `<span class="reference">${ref}</span><p><strong>Resumo fiel:</strong> ${summary}</p><p><strong>Na jornada:</strong> ${apply}</p>`;
+        scriptureGrid.appendChild(card);
+      });
+
+      const insightGrid = document.getElementById("insightGrid");
+      insightGrid.innerHTML = "";
+      insights.forEach(([name, theme, help]) => {
+        const card = document.createElement("article");
+        card.className = "insight-card";
+        card.innerHTML = `<h3>${name}</h3><p>${theme}</p><p>${help}</p>`;
+        insightGrid.appendChild(card);
+      });
+
+      const avoidGrid = document.getElementById("avoidGrid");
+      avoidGrid.innerHTML = "";
+      avoidItems.forEach(([action, danger, produces, instead]) => {
+        const card = document.createElement("article");
+        card.className = "avoid-card";
+        card.innerHTML = `<h3>${action}</h3><p><strong>Perigo:</strong> ${danger}</p><p><strong>Produz lentamente:</strong> ${produces}</p><p><strong>Em vez disso:</strong> ${instead}</p>`;
+        avoidGrid.appendChild(card);
+      });
+    }
+
+    function renderStudies() {
+      const grid = document.getElementById("studyGrid");
+      grid.innerHTML = "";
+      let currentWeek = "";
+      studies.forEach(([week, day, passage, theme, reflection, prayer, action]) => {
+        if (week !== currentWeek) {
+          currentWeek = week;
+          const heading = document.createElement("div");
+          heading.className = "week-heading";
+          heading.textContent = week;
+          grid.appendChild(heading);
+        }
+        const card = document.createElement("article");
+        card.className = "study-card";
+        card.innerHTML = `
+          <span class="reference">Dia ${day} · ${passage}</span>
+          <h3 style="margin-top:10px;">${theme}</h3>
+          <p><strong>Reflexão de cinco minutos:</strong> ${reflection}</p>
+          <p><strong>Foco de oração:</strong> ${prayer}</p>
+          <p><strong>Ação prática:</strong> ${action}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderAudit() {
+      const checks = document.getElementById("auditChecks");
+      checks.innerHTML = "";
+      const audit = app.audits[todayKey] || {};
+      const auditChecked = audit.checked || [];
+      auditQuestions.forEach((question, index) => {
+        const label = document.createElement("label");
+        label.className = "audit-question";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = auditChecked.indexOf(index) !== -1;
+        if (input.checked) label.className += " checked";
+        input.addEventListener("change", () => {
+          const currentAudit = app.audits[todayKey] || {};
+          const current = currentAudit.checked || [];
+          if (input.checked && current.indexOf(index) === -1) current.push(index);
+          currentAudit.checked = input.checked ? current : current.filter(item => item !== index);
+          app.audits[todayKey] = currentAudit;
+          saveState();
+        });
+        const span = document.createElement("span");
+        span.textContent = question;
+        label.appendChild(input);
+        label.appendChild(span);
+        checks.appendChild(label);
+      });
+
+      ["lieToday", "truthTodayText", "godReminder", "watchTomorrow", "brickToday", "auditReflection"].forEach(id => {
+        document.getElementById(id).value = audit[id] || "";
+      });
+    }
+
+    function renderDeclarations() {
+      const grid = document.getElementById("declarationGrid");
+      grid.innerHTML = "";
+      declarations.forEach(text => {
+        const card = document.createElement("article");
+        card.className = "declaration-card" + (app.pinnedDeclaration === text ? " pinned" : "");
+        const p = document.createElement("p");
+        p.textContent = text;
+        const button = document.createElement("button");
+        button.className = "btn";
+        button.type = "button";
+        button.textContent = app.pinnedDeclaration === text ? "Verdade fixada" : "Fixar como verdade do dia";
+        button.addEventListener("click", () => {
+          app.pinnedDeclaration = text;
+          saveState();
+          renderDeclarations();
+          renderHistory();
+        });
+        card.appendChild(p);
+        card.appendChild(document.createElement("br"));
+        card.appendChild(button);
+        grid.appendChild(card);
+      });
+      document.getElementById("pinnedDeclarationLabel").textContent = app.pinnedDeclaration ? "Verdade do dia fixada" : "Nenhuma verdade fixada";
+    }
+
+    function renderAltar() {
+      Object.keys(app.altar).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.value = app.altar[id] || "";
+      });
+    }
+
+    function renderHistory() {
+      const grid = document.getElementById("historyGrid");
+      grid.innerHTML = "";
+      const items = [];
+      items.push(["Dias concluídos", app.completedDays.length ? `Dias marcados: ${app.completedDays.sort((a, b) => a - b).join(", ")}.` : "Nenhum dia concluído ainda. O Dia 0 também pode ser um começo humilde."]);
+      items.push(["Crescimento do muro", `${app.completedDays.length} de 30 tijolos colocados como memoriais de retorno ao Senhor.`]);
+
+      const auditDates = Object.keys(app.audits).sort().reverse().slice(0, 5);
+      items.push(["Auditorias salvas", auditDates.length ? auditDates.join(", ") : "Nenhuma auditoria salva ainda."]);
+
+      const states = app.selectedStatesHistory.slice(0, 5).map(item => `${item.date}: ${item.state}`);
+      items.push(["Estados enfrentados", states.length ? states.join(" · ") : "Nenhum estado registrado ainda."]);
+      items.push(["Verdade do dia", app.pinnedDeclaration || "Nenhuma verdade fixada ainda."]);
+
+      const altarSummary = app.altar.altarVerse || app.altar.altarRemember || app.altar.altarShown || app.altar.altarPrayer;
+      items.push(["Memória do altar", altarSummary || "Nenhuma memória registrada ainda."]);
+
+      items.forEach(([title, text]) => {
+        const card = document.createElement("article");
+        card.className = "history-card";
+        card.innerHTML = `<h3>${title}</h3><p>${text}</p>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderAll() {
+      renderTheme();
+      renderWall();
+      renderProgress();
+      renderChecklist();
+      renderStates();
+      renderTruths();
+      renderCards();
+      renderStudies();
+      renderAudit();
+      renderDeclarations();
+      renderAltar();
+      renderHistory();
+    }
+
+    function closeNavigation() {
+      const nav = document.getElementById("quickNav");
+      const toggle = document.getElementById("navToggle");
+      if (!nav || !toggle) return;
+      nav.className = nav.className.replace(" open", "");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    document.getElementById("navToggle").addEventListener("click", () => {
+      const nav = document.getElementById("quickNav");
+      const toggle = document.getElementById("navToggle");
+      const isOpen = nav.className.indexOf("open") !== -1;
+      nav.className = isOpen ? nav.className.replace(" open", "") : nav.className + " open";
+      toggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    });
+
+    Array.prototype.slice.call(document.querySelectorAll(".nav-link")).forEach(link => {
+      link.addEventListener("click", closeNavigation);
+    });
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      app.theme = app.theme === "dark" ? "light" : "dark";
+      saveState();
+      renderTheme();
+    });
+
+    document.getElementById("startDate").addEventListener("change", event => {
+      app.startDate = event.target.value;
+      saveState();
+      renderProgress();
+    });
+
+    document.getElementById("completeDay").addEventListener("click", () => {
+      const day = getCurrentDay();
+      if (day > 0 && app.completedDays.indexOf(day) === -1) {
+        app.completedDays.push(day);
+        app.completedDays.sort((a, b) => a - b);
+        saveState();
+        renderWall();
+        renderProgress();
+        renderHistory();
+      }
+    });
+
+    document.getElementById("uncompleteDay").addEventListener("click", () => {
+      const day = getCurrentDay();
+      app.completedDays = app.completedDays.filter(item => item !== day);
+      saveState();
+      renderWall();
+      renderProgress();
+      renderHistory();
+    });
+
+    document.getElementById("saveAudit").addEventListener("click", () => {
+      const currentAudit = app.audits[todayKey] || { checked: [] };
+      ["lieToday", "truthTodayText", "godReminder", "watchTomorrow", "brickToday", "auditReflection"].forEach(id => {
+        currentAudit[id] = document.getElementById(id).value.trim();
+      });
+      currentAudit.savedAt = new Date().toLocaleString("pt-BR");
+      app.audits[todayKey] = currentAudit;
+      saveState();
+      renderHistory();
+      alert("Auditoria espiritual salva. Que este registro ajude sua alma a lembrar da graça.");
+    });
+
+    document.getElementById("saveAltar").addEventListener("click", () => {
+      Object.keys(app.altar).forEach(id => {
+        app.altar[id] = document.getElementById(id).value.trim();
+      });
+      saveState();
+      renderHistory();
+      alert("Memória salva no altar. Lembre-se do que Deus tem mostrado.");
+    });
+
+    document.getElementById("resetAll").addEventListener("click", () => {
+      const confirmed = confirm("Deseja reiniciar toda a jornada? Isso apagará progresso, auditorias, muro, checklist e memórias salvas neste navegador.");
+      if (!confirmed) return;
+      app = mergeState({ theme: app.theme });
+      safeSetStorage(storageKey, JSON.stringify(app));
+      renderAll();
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
